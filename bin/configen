@@ -1,0 +1,43 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import yaml
+import os
+import argparse
+from configen import Configen
+
+parser = argparse.ArgumentParser(description='Config generator script')
+
+parser.add_argument(
+    '-c',
+    '--config',
+    help='Configuration directory',
+    dest='config'
+)
+
+parser.add_argument(
+    '-t',
+    '--test',
+    default=False,
+    action='store_true',
+    help='Test configuration',
+    dest='test',
+)
+
+args = parser.parse_args()
+config = {'tempalteDir': args.config}
+if os.path.exists(args.config):
+    if os.path.isfile(args.config):
+        config = yaml.load(open(args.config, 'r'))
+
+configen = Configen(config)
+
+if args.test:
+    configen.test()
+else:
+    configen.run()
+
+
+
+
+
