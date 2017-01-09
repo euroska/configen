@@ -11,7 +11,7 @@ setup(name='configen',
           'jinja2',
           'sqlalchemy',
           'psycopg2',
-          'yaml'
+          'pyyaml'
       ],
       scripts= ['bin/configen'],
 )
